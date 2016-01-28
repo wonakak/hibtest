@@ -1,4 +1,4 @@
-package wonakak;
+package by.run;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

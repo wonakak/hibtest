@@ -12,10 +12,11 @@
 
     <!-- all, trace, debug, info, warn, error, fatal, off -->
 
-    <category name="edu.javacourse.hibernate">
+    <category name="by">
         <priority value="trace"/>
         <appender-ref ref="consoleLog"/>
     </category>
+
 
     <category name="org.hibernate.SQL">
         <priority value="debug"/>

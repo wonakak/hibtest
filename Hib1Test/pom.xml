@@ -4,7 +4,7 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-  <groupId>wonakak</groupId>
+  <groupId>by.wonakak</groupId>
   <artifactId>hib1test</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
@@ -27,7 +27,7 @@
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-core</artifactId>
-      <version>4.2.21.Final</version>
+      <version>5.0.7.Final</version>
     </dependency>
 
     <dependency>
