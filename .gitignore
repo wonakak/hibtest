@@ -1,5 +1,5 @@
 # исключить target директорию
-target/
+Hib1Test/target/
 
 # исключить файлы идеи
-.idea/
+Hib1Test/.idea/
