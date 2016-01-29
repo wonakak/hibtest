@@ -1,5 +1,7 @@
 package by.model;
 
+import org.hibernate.annotations.NaturalId;
+
 import javax.persistence.*;
 
 @Entity
@@ -11,9 +13,11 @@ public class User {
     @Column(name = "id")
     private long id;
 
+//    @NaturalId
     @Column(name = "name")
     private String name;
 
+//    @NaturalId
     @Column(name = "lastn")
     private String lastName;
 
@@ -24,6 +28,13 @@ public class User {
     @JoinColumn(name = "dep_id")
     private Department dep;
 
+
+    public User() {
+    }
+
+    public User(String name) {
+        this.name = name;
+    }
 
     public long getId() {
         return id;
