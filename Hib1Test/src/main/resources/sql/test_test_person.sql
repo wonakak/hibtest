@@ -1,0 +1,2 @@
+INSERT INTO test.person (id, age, firstname, lastname, salary) VALUES (1, 30, 'Ivan', 'Petrov', 123000.00);
+INSERT INTO test.person (id, age, firstname, lastname, salary) VALUES (2, 45, 'Sidor', 'Kruglov', 45600.00);
