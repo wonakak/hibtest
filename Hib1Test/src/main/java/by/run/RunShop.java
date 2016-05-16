@@ -28,12 +28,12 @@ public class RunShop {
     private static StandardServiceRegistry registry;
 
     public static void main(String[] args) {
-        log.info("_________ HIBERNATE START _________");
+        log.info("_________ HIBERNATE START RUN_SHOP_________");
         setUpSessionFactory();
         sessionWork(false);
         closeSessionFactory();
         destroyRegistry();
-        log.info( "_________ FINISHED _________" );
+        log.info( "_________ FINISHED RUN_SHOP_________" );
     }
 
     public static void doTxWork(Session session) {
