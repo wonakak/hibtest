@@ -30,6 +30,10 @@ public class RunAppExample
         log.info( "_________ FINISHED _________" );
     }
 
+    /**
+     * Create work in transaction
+     * @param session
+     */
     public static void doTxWork(Session session) {
 //        readSameUser(session);
 //        dynamicModels(session);
@@ -160,13 +164,13 @@ public class RunAppExample
             catch (Exception e) {
                 if (tx!=null) tx.rollback();
                 e.printStackTrace();
-            }finally {
+            } finally {
                 if (openSession) {
                     session.close();
                 }
             }
 
-        } else{
+        } else {
             log.error("___________ !!! sessionFactory is NULL !!! ___________");
         }
     }
