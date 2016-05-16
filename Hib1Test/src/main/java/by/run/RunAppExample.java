@@ -10,6 +10,8 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.model.naming.ImplicitNamingStrategyJpaCompliantImpl;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.cfg.AvailableSettings;
+import org.hibernate.resource.transaction.spi.TransactionStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -103,18 +105,14 @@ public class RunAppExample
     public static void dynamicModels(Session session) {
 //        Hibernate Domain Model Mapping
 //        The mapping of dynamic models
-
         // Create a customer entity
         Map david = new HashMap();
         david.put("name", "David");
-
 // Create an organization entity
         Map foobar = new HashMap();
         foobar.put("name", "Foobar Inc.");
-
 // Link both
         david.put("deps", foobar);
-
 // Save both
         session.save("deps", foobar);
         session.save("users", david);
@@ -213,6 +211,30 @@ public class RunAppExample
         }
     }
 
+    public void doSomeWork() {
+        Session session = sessionFactory.openSession();
+        try {
+            // calls Connection#setAutoCommit(false) to signal start of transaction
+            session.getTransaction().begin();
+
+//            doTheWork();
+
+            // calls Connection#commit(), if an error happens we attempt a rollback
+            session.getTransaction().commit();
+        }
+        catch (Exception e) {
+            // we may need to rollback depending on where the exception happened
+            if ( session.getTransaction().getStatus() == TransactionStatus.ACTIVE
+                    || session.getTransaction().getStatus() == TransactionStatus.MARKED_ROLLBACK ) {
+                session.getTransaction().rollback();
+            }
+            // handle the underlying error
+        }
+        finally {
+            session.close();
+        }
+    }
+
     private static void setUpJPA() {
 
     }
@@ -243,6 +265,7 @@ public class RunAppExample
             // A SessionFactory is set up once for an application!
             registry = new StandardServiceRegistryBuilder()
                     .configure() // configures settings from hibernate.cfg.xml
+                    .applySetting(AvailableSettings.TRANSACTION_COORDINATOR_STRATEGY, "jdbc")
                     .build();
             try {
                 sessionFactory = new MetadataSources( registry ).buildMetadata().buildSessionFactory();
