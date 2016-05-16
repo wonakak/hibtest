@@ -108,7 +108,7 @@ public class RunShop {
     public static void criteria1AllProducts(Session session) {
         Long[] ids = {2L, 3L, 4L};
         Criteria c = session.createCriteria(Product.class, "aliasP");
-        // select * from product as aliasP where id not in (2, 3, 4)
+//         select * from product as aliasP where id not in (2, 3, 4)
 //        c.add(Restrictions.eq("title", "Compaq Tower"));
 //        c.add(Restrictions.in("id", ids));
         c.add(Restrictions.between("price", new BigDecimal(200), new BigDecimal(900)));
